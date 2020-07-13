@@ -1,23 +1,28 @@
 import React, { ChangeEvent, useEffect } from 'react'
 
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import InputLabel from '@material-ui/core/InputLabel'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import FormControl from '@material-ui/core/FormControl'
-import Paper from '@material-ui/core/Paper'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Select from '@material-ui/core/Select'
-import { makeStyles } from '@material-ui/core/styles'
+import {
+    OutlinedInput,
+    InputLabel,
+    InputAdornment,
+    FormControl,
+    Paper,
+    Container,
+    Grid,
+    Select,
+    Link,
+    IconButton,
+    makeStyles,
+} from '@material-ui/core'
 import clsx from 'clsx'
 
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
+import GitHubIcon from '@material-ui/icons/GitHub'
 import Typography from '@material-ui/core/Typography'
 import { Breakdown } from './Breakdown'
 import { periodToYear, unitToYear } from './calcs'
-import AboutDialog from "./About";
+import AboutDialog from './About'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     panel: {},
     topControls: {
         float: 'right',
+        display: 'inline-flex',
     },
 }))
 
@@ -44,10 +50,10 @@ function TopControls() {
     const classes = useStyles()
     return (
         <div className={classes.topControls}>
-            {/*<IconButton disabled>*/}
-            {/*    <SettingsIcon fontSize="large" />*/}
-            {/*</IconButton>*/}
-            <AboutDialog/>
+            <AboutDialog />
+            <IconButton href="https://github.com/oselz/isitworththecost">
+                <GitHubIcon fontSize="large" />
+            </IconButton>
         </div>
     )
 }
@@ -83,7 +89,7 @@ function App() {
         if (key === null) {
             setValues({
                 ...values,
-                [prop]: val
+                [prop]: val,
             })
         } else {
             if (key === 'value' && (val < 0 || isNaN(val))) {
@@ -102,7 +108,6 @@ function App() {
                     [key]: val,
                 },
             })
-
         }
     }
 
